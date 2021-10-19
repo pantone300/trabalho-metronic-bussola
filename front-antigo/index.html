@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" href="/favicon.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Web site created using create-react-app">
+  <link rel="apple-touch-icon" href="/logo192.png">
+  <link rel="manifest" href="/manifest.json">
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <title>React App</title>
+  <link href="./static/css/2.3d67933c.chunk.css" rel="stylesheet">
+  <link href="./static/css/main.89bb9637.chunk.css" rel="stylesheet">
+  <style type="text/css">
+    .apexcharts-canvas {
+      position: relative;
+      user-select: none;
+      /* cannot give overflow: hidden as it will crop tooltips which overflow outside chart area */
+    }
+
+
+    /* scrollbar is not visible by default for legend, hence forcing the visibility */
+    .apexcharts-canvas ::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 6px;
+    }
+
+    .apexcharts-canvas ::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background-color: rgba(0, 0, 0, .5);
+      box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+      -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+    }
+
+
+    .apexcharts-inner {
+      position: relative;
+    }
+
+    .apexcharts-text tspan {
+      font-family: inherit;
+    }
+
+    .legend-mouseover-inactive {
+      transition: 0.15s ease all;
+      opacity: 0.20;
+    }
+
+    .apexcharts-series-collapsed {
+      opacity: 0;
+    }
+
+    .apexcharts-tooltip {
+      border-radius: 5px;
+      box-shadow: 2px 2px 6px -4px #999;
+      cursor: default;
+      font-size: 14px;
+      left: 62px;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      white-space: nowrap;
+      z-index: 12;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-tooltip.apexcharts-active {
+      opacity: 1;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-tooltip.apexcharts-theme-light {
+      border: 1px solid #e3e3e3;
+      background: rgba(255, 255, 255, 0.96);
+    }
+
+    .apexcharts-tooltip.apexcharts-theme-dark {
+      color: #fff;
+      background: rgba(30, 30, 30, 0.8);
+    }
+
+    .apexcharts-tooltip * {
+      font-family: inherit;
+    }
+
+
+    .apexcharts-tooltip-title {
+      padding: 6px;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+      background: #ECEFF1;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .apexcharts-tooltip.apexcharts-theme-dark .apexcharts-tooltip-title {
+      background: rgba(0, 0, 0, 0.7);
+      border-bottom: 1px solid #333;
+    }
+
+    .apexcharts-tooltip-text-y-value,
+    .apexcharts-tooltip-text-goals-value,
+    .apexcharts-tooltip-text-z-value {
+      display: inline-block;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    .apexcharts-tooltip-text-y-label:empty,
+    .apexcharts-tooltip-text-y-value:empty,
+    .apexcharts-tooltip-text-goals-label:empty,
+    .apexcharts-tooltip-text-goals-value:empty,
+    .apexcharts-tooltip-text-z-value:empty {
+      display: none;
+    }
+
+    .apexcharts-tooltip-text-y-value,
+    .apexcharts-tooltip-text-goals-value,
+    .apexcharts-tooltip-text-z-value {
+      font-weight: 600;
+    }
+
+    .apexcharts-tooltip-text-goals-label,
+    .apexcharts-tooltip-text-goals-value {
+      padding: 6px 0 5px;
+    }
+
+    .apexcharts-tooltip-goals-group,
+    .apexcharts-tooltip-text-goals-label,
+    .apexcharts-tooltip-text-goals-value {
+      display: flex;
+    }
+
+    .apexcharts-tooltip-text-goals-label:not(:empty),
+    .apexcharts-tooltip-text-goals-value:not(:empty) {
+      margin-top: -6px;
+    }
+
+    .apexcharts-tooltip-marker {
+      width: 12px;
+      height: 12px;
+      position: relative;
+      top: 0px;
+      margin-right: 10px;
+      border-radius: 50%;
+    }
+
+    .apexcharts-tooltip-series-group {
+      padding: 0 10px;
+      display: none;
+      text-align: left;
+      justify-content: left;
+      align-items: center;
+    }
+
+    .apexcharts-tooltip-series-group.apexcharts-active .apexcharts-tooltip-marker {
+      opacity: 1;
+    }
+
+    .apexcharts-tooltip-series-group.apexcharts-active,
+    .apexcharts-tooltip-series-group:last-child {
+      padding-bottom: 4px;
+    }
+
+    .apexcharts-tooltip-series-group-hidden {
+      opacity: 0;
+      height: 0;
+      line-height: 0;
+      padding: 0 !important;
+    }
+
+    .apexcharts-tooltip-y-group {
+      padding: 6px 0 5px;
+    }
+
+    .apexcharts-tooltip-box,
+    .apexcharts-custom-tooltip {
+      padding: 4px 8px;
+    }
+
+    .apexcharts-tooltip-boxPlot {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+
+    .apexcharts-tooltip-box>div {
+      margin: 4px 0;
+    }
+
+    .apexcharts-tooltip-box span.value {
+      font-weight: bold;
+    }
+
+    .apexcharts-tooltip-rangebar {
+      padding: 5px 8px;
+    }
+
+    .apexcharts-tooltip-rangebar .category {
+      font-weight: 600;
+      color: #777;
+    }
+
+    .apexcharts-tooltip-rangebar .series-name {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .apexcharts-xaxistooltip {
+      opacity: 0;
+      padding: 9px 10px;
+      pointer-events: none;
+      color: #373d3f;
+      font-size: 13px;
+      text-align: center;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+      background: #ECEFF1;
+      border: 1px solid #90A4AE;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-xaxistooltip.apexcharts-theme-dark {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+
+    .apexcharts-xaxistooltip:after,
+    .apexcharts-xaxistooltip:before {
+      left: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .apexcharts-xaxistooltip:after {
+      border-color: rgba(236, 239, 241, 0);
+      border-width: 6px;
+      margin-left: -6px;
+    }
+
+    .apexcharts-xaxistooltip:before {
+      border-color: rgba(144, 164, 174, 0);
+      border-width: 7px;
+      margin-left: -7px;
+    }
+
+    .apexcharts-xaxistooltip-bottom:after,
+    .apexcharts-xaxistooltip-bottom:before {
+      bottom: 100%;
+    }
+
+    .apexcharts-xaxistooltip-top:after,
+    .apexcharts-xaxistooltip-top:before {
+      top: 100%;
+    }
+
+    .apexcharts-xaxistooltip-bottom:after {
+      border-bottom-color: #ECEFF1;
+    }
+
+    .apexcharts-xaxistooltip-bottom:before {
+      border-bottom-color: #90A4AE;
+    }
+
+    .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:after {
+      border-bottom-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-xaxistooltip-bottom.apexcharts-theme-dark:before {
+      border-bottom-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-xaxistooltip-top:after {
+      border-top-color: #ECEFF1
+    }
+
+    .apexcharts-xaxistooltip-top:before {
+      border-top-color: #90A4AE;
+    }
+
+    .apexcharts-xaxistooltip-top.apexcharts-theme-dark:after {
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-xaxistooltip-top.apexcharts-theme-dark:before {
+      border-top-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-xaxistooltip.apexcharts-active {
+      opacity: 1;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-yaxistooltip {
+      opacity: 0;
+      padding: 4px 10px;
+      pointer-events: none;
+      color: #373d3f;
+      font-size: 13px;
+      text-align: center;
+      border-radius: 2px;
+      position: absolute;
+      z-index: 10;
+      background: #ECEFF1;
+      border: 1px solid #90A4AE;
+    }
+
+    .apexcharts-yaxistooltip.apexcharts-theme-dark {
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      color: #fff;
+    }
+
+    .apexcharts-yaxistooltip:after,
+    .apexcharts-yaxistooltip:before {
+      top: 50%;
+      border: solid transparent;
+      content: " ";
+      height: 0;
+      width: 0;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .apexcharts-yaxistooltip:after {
+      border-color: rgba(236, 239, 241, 0);
+      border-width: 6px;
+      margin-top: -6px;
+    }
+
+    .apexcharts-yaxistooltip:before {
+      border-color: rgba(144, 164, 174, 0);
+      border-width: 7px;
+      margin-top: -7px;
+    }
+
+    .apexcharts-yaxistooltip-left:after,
+    .apexcharts-yaxistooltip-left:before {
+      left: 100%;
+    }
+
+    .apexcharts-yaxistooltip-right:after,
+    .apexcharts-yaxistooltip-right:before {
+      right: 100%;
+    }
+
+    .apexcharts-yaxistooltip-left:after {
+      border-left-color: #ECEFF1;
+    }
+
+    .apexcharts-yaxistooltip-left:before {
+      border-left-color: #90A4AE;
+    }
+
+    .apexcharts-yaxistooltip-left.apexcharts-theme-dark:after {
+      border-left-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-yaxistooltip-left.apexcharts-theme-dark:before {
+      border-left-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-yaxistooltip-right:after {
+      border-right-color: #ECEFF1;
+    }
+
+    .apexcharts-yaxistooltip-right:before {
+      border-right-color: #90A4AE;
+    }
+
+    .apexcharts-yaxistooltip-right.apexcharts-theme-dark:after {
+      border-right-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-yaxistooltip-right.apexcharts-theme-dark:before {
+      border-right-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .apexcharts-yaxistooltip.apexcharts-active {
+      opacity: 1;
+    }
+
+    .apexcharts-yaxistooltip-hidden {
+      display: none;
+    }
+
+    .apexcharts-xcrosshairs,
+    .apexcharts-ycrosshairs {
+      pointer-events: none;
+      opacity: 0;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-xcrosshairs.apexcharts-active,
+    .apexcharts-ycrosshairs.apexcharts-active {
+      opacity: 1;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-ycrosshairs-hidden {
+      opacity: 0;
+    }
+
+    .apexcharts-selection-rect {
+      cursor: move;
+    }
+
+    .svg_select_boundingRect,
+    .svg_select_points_rot {
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .apexcharts-selection-rect+g .svg_select_boundingRect,
+    .apexcharts-selection-rect+g .svg_select_points_rot {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .apexcharts-selection-rect+g .svg_select_points_l,
+    .apexcharts-selection-rect+g .svg_select_points_r {
+      cursor: ew-resize;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .svg_select_points {
+      fill: #efefef;
+      stroke: #333;
+      rx: 2;
+    }
+
+    .apexcharts-svg.apexcharts-zoomable.hovering-zoom {
+      cursor: crosshair
+    }
+
+    .apexcharts-svg.apexcharts-zoomable.hovering-pan {
+      cursor: move
+    }
+
+    .apexcharts-zoom-icon,
+    .apexcharts-zoomin-icon,
+    .apexcharts-zoomout-icon,
+    .apexcharts-reset-icon,
+    .apexcharts-pan-icon,
+    .apexcharts-selection-icon,
+    .apexcharts-menu-icon,
+    .apexcharts-toolbar-custom-icon {
+      cursor: pointer;
+      width: 20px;
+      height: 20px;
+      line-height: 24px;
+      color: #6E8192;
+      text-align: center;
+    }
+
+    .apexcharts-zoom-icon svg,
+    .apexcharts-zoomin-icon svg,
+    .apexcharts-zoomout-icon svg,
+    .apexcharts-reset-icon svg,
+    .apexcharts-menu-icon svg {
+      fill: #6E8192;
+    }
+
+    .apexcharts-selection-icon svg {
+      fill: #444;
+      transform: scale(0.76)
+    }
+
+    .apexcharts-theme-dark .apexcharts-zoom-icon svg,
+    .apexcharts-theme-dark .apexcharts-zoomin-icon svg,
+    .apexcharts-theme-dark .apexcharts-zoomout-icon svg,
+    .apexcharts-theme-dark .apexcharts-reset-icon svg,
+    .apexcharts-theme-dark .apexcharts-pan-icon svg,
+    .apexcharts-theme-dark .apexcharts-selection-icon svg,
+    .apexcharts-theme-dark .apexcharts-menu-icon svg,
+    .apexcharts-theme-dark .apexcharts-toolbar-custom-icon svg {
+      fill: #f3f4f5;
+    }
+
+    .apexcharts-canvas .apexcharts-zoom-icon.apexcharts-selected svg,
+    .apexcharts-canvas .apexcharts-selection-icon.apexcharts-selected svg,
+    .apexcharts-canvas .apexcharts-reset-zoom-icon.apexcharts-selected svg {
+      fill: #008FFB;
+    }
+
+    .apexcharts-theme-light .apexcharts-selection-icon:not(.apexcharts-selected):hover svg,
+    .apexcharts-theme-light .apexcharts-zoom-icon:not(.apexcharts-selected):hover svg,
+    .apexcharts-theme-light .apexcharts-zoomin-icon:hover svg,
+    .apexcharts-theme-light .apexcharts-zoomout-icon:hover svg,
+    .apexcharts-theme-light .apexcharts-reset-icon:hover svg,
+    .apexcharts-theme-light .apexcharts-menu-icon:hover svg {
+      fill: #333;
+    }
+
+    .apexcharts-selection-icon,
+    .apexcharts-menu-icon {
+      position: relative;
+    }
+
+    .apexcharts-reset-icon {
+      margin-left: 5px;
+    }
+
+    .apexcharts-zoom-icon,
+    .apexcharts-reset-icon,
+    .apexcharts-menu-icon {
+      transform: scale(0.85);
+    }
+
+    .apexcharts-zoomin-icon,
+    .apexcharts-zoomout-icon {
+      transform: scale(0.7)
+    }
+
+    .apexcharts-zoomout-icon {
+      margin-right: 3px;
+    }
+
+    .apexcharts-pan-icon {
+      transform: scale(0.62);
+      position: relative;
+      left: 1px;
+      top: 0px;
+    }
+
+    .apexcharts-pan-icon svg {
+      fill: #fff;
+      stroke: #6E8192;
+      stroke-width: 2;
+    }
+
+    .apexcharts-pan-icon.apexcharts-selected svg {
+      stroke: #008FFB;
+    }
+
+    .apexcharts-pan-icon:not(.apexcharts-selected):hover svg {
+      stroke: #333;
+    }
+
+    .apexcharts-toolbar {
+      position: absolute;
+      z-index: 11;
+      max-width: 176px;
+      text-align: right;
+      border-radius: 3px;
+      padding: 0px 6px 2px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .apexcharts-menu {
+      background: #fff;
+      position: absolute;
+      top: 100%;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      padding: 3px;
+      right: 10px;
+      opacity: 0;
+      min-width: 110px;
+      transition: 0.15s ease all;
+      pointer-events: none;
+    }
+
+    .apexcharts-menu.apexcharts-menu-open {
+      opacity: 1;
+      pointer-events: all;
+      transition: 0.15s ease all;
+    }
+
+    .apexcharts-menu-item {
+      padding: 6px 7px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .apexcharts-theme-light .apexcharts-menu-item:hover {
+      background: #eee;
+    }
+
+    .apexcharts-theme-dark .apexcharts-menu {
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+    }
+
+    @media screen and (min-width: 768px) {
+      .apexcharts-canvas:hover .apexcharts-toolbar {
+        opacity: 1;
+      }
+    }
+
+    .apexcharts-datalabel.apexcharts-element-hidden {
+      opacity: 0;
+    }
+
+    .apexcharts-pie-label,
+    .apexcharts-datalabels,
+    .apexcharts-datalabel,
+    .apexcharts-datalabel-label,
+    .apexcharts-datalabel-value {
+      cursor: default;
+      pointer-events: none;
+    }
+
+    .apexcharts-pie-label-delay {
+      opacity: 0;
+      animation-name: opaque;
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+      animation-timing-function: ease;
+    }
+
+    .apexcharts-canvas .apexcharts-element-hidden {
+      opacity: 0;
+    }
+
+    .apexcharts-hide .apexcharts-series-points {
+      opacity: 0;
+    }
+
+    .apexcharts-gridline,
+    .apexcharts-annotation-rect,
+    .apexcharts-tooltip .apexcharts-marker,
+    .apexcharts-area-series .apexcharts-area,
+    .apexcharts-line,
+    .apexcharts-zoom-rect,
+    .apexcharts-toolbar svg,
+    .apexcharts-area-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+    .apexcharts-line-series .apexcharts-series-markers .apexcharts-marker.no-pointer-events,
+    .apexcharts-radar-series path,
+    .apexcharts-radar-series polygon {
+      pointer-events: none;
+    }
+
+
+    /* markers */
+
+    .apexcharts-marker {
+      transition: 0.15s ease all;
+    }
+
+    @keyframes opaque {
+      0% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+
+    /* Resize generated styles */
+
+    @keyframes resizeanim {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+
+    .resize-triggers {
+      animation: 1ms resizeanim;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .resize-triggers,
+    .resize-triggers>div,
+    .contract-trigger:before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .resize-triggers>div {
+      background: #eee;
+      overflow: auto;
+    }
+
+    .contract-trigger:before {
+      width: 200%;
+      height: 200%;
+    }
+  </style>
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root">
+    <div class="app">
+      <header class="header">
+        <div class="header__mobile d-lg-none">
+          <div class="header__mobile-fixed">
+            <h1 class="header__brand-name"> Acme </h1>
+            <div class="header__box-config  d-lg-none"><a class="header__config" href="#s"><i
+                  class="header__icon fas fa-cog"> </i></a>
+              <div class="header__user"><img class="header__user-img " src="user.jpg" alt="imagem do usuário"></div>
+              <input type="checkbox" class="header__menu-hamburguer" id="menu-hamburguer"><label class="header__label"
+                for="menu-hamburguer"><span class="header__hamburguer"><span class="header__hamburguer-md">
+                  </span></span></label>
+            </div>
+          </div>
+        </div>
+        <div class="header__box">
+          <div class="header__box-fixed">
+            <div class="header__logo d-none d-lg-flex"><img class="header__img" src="logo512.png" alt="logo acme"></div>
+            <div class="header__box-info">
+              <div class="header__wrapper">
+                <h2 class="header__title">Incubadora de Empresas ACME </h2>
+                <div class="header__box-config d-none d-lg-flex"><a class="header__config" href="#s"><i
+                      class="header__icon fas fa-cog"> </i></a>
+                  <div class="header__user"><img class="header__user-img " src="user.jpg" alt="imagem do usuário"></div>
+                </div>
+              </div>
+              <div class="header__dash">Dashboard</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="menuUser ">
+        <div class="menuUser__wrapper">
+          <div class="menuUser__box-name">
+            <h3 class="menuUser__title">Perfil do usuário </h3>
+            <div class="menuUser__close"><i class="menuUser__icon fas fa-times"></i></div>
+            <div class="menuUser__box-perfil">
+              <div class="menuUser__box-img"><img class="menuUser__img " src="user.jpg" alt="imagem do usuário"><span
+                  class="menuUser__status menuUser__status--active"> </span></div>
+              <div class="menuUser__wrapper-perfil"><a href="#s" class="menuUser__name">James Jones </a><span
+                  class="menuUser__perfil">Application Developer </span><span class="menuUser__email"><svg width="24px"
+                    height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <rect x="0" y="0" width="24" height="24"></rect>
+                      <path
+                        d="M21,12.0829584 C20.6747915,12.0283988 20.3407122,12 20,12 C16.6862915,12 14,14.6862915 14,18 C14,18.3407122 14.0283988,18.6747915 14.0829584,19 L5,19 C3.8954305,19 3,18.1045695 3,17 L3,8 C3,6.8954305 3.8954305,6 5,6 L19,6 C20.1045695,6 21,6.8954305 21,8 L21,12.0829584 Z M18.1444251,7.83964668 L12,11.1481833 L5.85557487,7.83964668 C5.4908718,7.6432681 5.03602525,7.77972206 4.83964668,8.14442513 C4.6432681,8.5091282 4.77972206,8.96397475 5.14442513,9.16035332 L11.6444251,12.6603533 C11.8664074,12.7798822 12.1335926,12.7798822 12.3555749,12.6603533 L18.8555749,9.16035332 C19.2202779,8.96397475 19.3567319,8.5091282 19.1603533,8.14442513 C18.9639747,7.77972206 18.5091282,7.6432681 18.1444251,7.83964668 Z"
+                        fill="#000000"></path>
+                      <circle fill="#000000" opacity="0.3" cx="19.5" cy="17.5" r="2.5"></circle>
+                    </g>
+                  </svg><a href="mail:teste.com.br">jm@softplus.com </a></span>
+                <div class="menuUser__box-btn"><a class="menuUser__btn" href="#d"> sair</a></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <main class="app__main">
+        <aside class="aside   ">
+          <div class="aside__fixed   ">
+            <div class="aside__container">
+              <div class="aside__brand d-none d-lg-flex"><span class="aside__arrow"><svg
+                    xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                      <polygon points="0 0 24 0 24 24 0 24"></polygon>
+                      <path
+                        d="M5.29288961,6.70710318 C4.90236532,6.31657888 4.90236532,5.68341391 5.29288961,5.29288961 C5.68341391,4.90236532 6.31657888,4.90236532 6.70710318,5.29288961 L12.7071032,11.2928896 C13.0856821,11.6714686 13.0989277,12.281055 12.7371505,12.675721 L7.23715054,18.675721 C6.86395813,19.08284 6.23139076,19.1103429 5.82427177,18.7371505 C5.41715278,18.3639581 5.38964985,17.7313908 5.76284226,17.3242718 L10.6158586,12.0300721 L5.29288961,6.70710318 Z"
+                        fill="#000000" fill-rule="nonzero"
+                        transform="translate(8.999997, 11.999999) scale(-1, 1) translate(-8.999997, -11.999999)"></path>
+                      <path
+                        d="M10.7071009,15.7071068 C10.3165766,16.0976311 9.68341162,16.0976311 9.29288733,15.7071068 C8.90236304,15.3165825 8.90236304,14.6834175 9.29288733,14.2928932 L15.2928873,8.29289322 C15.6714663,7.91431428 16.2810527,7.90106866 16.6757187,8.26284586 L22.6757187,13.7628459 C23.0828377,14.1360383 23.1103407,14.7686056 22.7371482,15.1757246 C22.3639558,15.5828436 21.7313885,15.6103465 21.3242695,15.2371541 L16.0300699,10.3841378 L10.7071009,15.7071068 Z"
+                        fill="#000000" fill-rule="nonzero" opacity="0.3"
+                        transform="translate(15.999997, 11.999999) scale(-1, 1) rotate(-270.000000) translate(-15.999997, -11.999999)">
+                      </path>
+                    </g>
+                  </svg></span></div>
+              <ul class="aside__list" id="asideMenu">
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading0"><a href=""
+                        class="collapsed item item__dash item--active " type="button" data-toggle="collapse"
+                        aria-expanded="false" data-target="#collapse0" aria-controls="collapse0"><i
+                          class="item__icon fas fa-home"></i><span class="item__arrow-name">Dashboard</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <div class="itemMenu">
+                      <h4 class="itemMenu__title">gestão
+                        <!-- -->
+                      </h4><i class="accordion__icon fas fa-ellipsis-h"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading2"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse2"
+                        aria-controls="collapse2"><i class="item__icon fas fa-cogs"></i><span
+                          class="item__arrow-name">operações</span><i class="item__arrow fas fa-angle-right"></i></a>
+                    </h2>
+                    <div id="collapse2" class="collapse" aria-labelledby="heading2" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Instituição Gestora</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Equipe</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Mapa de Salas</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Empreendimentos</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Empreendedores</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Usuários</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Fornecedores</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Consultores</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Plano Anual</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Tickets</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading3"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse3"
+                        aria-controls="collapse3"><i class="item__icon fas fa-dollar-sign"></i><span
+                          class="item__arrow-name">Financeiro</span><i class="item__arrow fas fa-angle-right"></i></a>
+                    </h2>
+                    <div id="collapse3" class="collapse" aria-labelledby="heading3" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Plano de Contas</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Receitas/Despesas</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Fluxo de Caixa</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Extratos Bancários</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading4"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse4"
+                        aria-controls="collapse4"><i class="item__icon fas fa-hand-holding"></i><span
+                          class="item__arrow-name">Serviços</span><i class="item__arrow fas fa-angle-right"></i></a>
+                    </h2>
+                    <div id="collapse4" class="collapse" aria-labelledby="heading4" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Sensibilização</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Prospecção</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Qualificação</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Consultoria</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Qualificação para Potenciais Empreendedores</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Outros Serviços</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Banco de Oportunidades</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Serviços Externos</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading5"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse5"
+                        aria-controls="collapse5"><i class="item__icon far fa-folder"></i><span
+                          class="item__arrow-name">Documentação</span><i class="item__arrow fas fa-angle-right"></i></a>
+                    </h2>
+                    <div id="collapse5" class="collapse" aria-labelledby="heading5" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Documentos</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Pastas de Documentos</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading6"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse6"
+                        aria-controls="collapse6"><i class="item__icon fas fa-rocket"></i><span
+                          class="item__arrow-name">Empreendimentos</span><i
+                          class="item__arrow fas fa-angle-right"></i></a></h2>
+                    <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Empreendimento</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Análise de Desempenho</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Análise de Maturidade</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading7"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse7"
+                        aria-controls="collapse7"><i class="item__icon fas fa-filter"></i><span
+                          class="item__arrow-name">Processo de Seleção</span><i
+                          class="item__arrow fas fa-angle-right"></i></a></h2>
+                    <div id="collapse7" class="collapse" aria-labelledby="heading7" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Gerenciar Processo</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Resumo</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading8"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse8"
+                        aria-controls="collapse8"><i class="item__icon far fa-compass"></i><span
+                          class="item__arrow-name">Estratégia</span><i class="item__arrow fas fa-angle-right"></i></a>
+                    </h2>
+                    <div id="collapse8" class="collapse" aria-labelledby="heading8" data-parent="#asideMenu">
+                      <ul class="accordion__submenu-list">
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Mapa Estratégico</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Objetivos Estratégicos</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Iniciativas</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Análise SWOT</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Avaliação da Gestão</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Análise da Gestão</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Resumo Histórico</span></a></li>
+                        <li class="accordion__submenu-item"><a href="#" alt="links" class="collapsed item   "
+                            type="button" data-toggle="collapse" aria-expanded="false"><span
+                              class="item__arrow-name">Conferência</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <div class="itemMenu">
+                      <h4 class="itemMenu__title">INDICADORES E RELATÓRIOS
+                        <!-- -->
+                      </h4><i class="accordion__icon fas fa-ellipsis-h"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading10"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse10"
+                        aria-controls="collapse10"><i class="item__icon far fa-file-image"></i><span
+                          class="item__arrow-name">Resumo Geral</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading11"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse11"
+                        aria-controls="collapse11"><i class="item__icon fas fa-chart-area"></i><span
+                          class="item__arrow-name">Empreendimentos</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading12"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse12"
+                        aria-controls="collapse12"><i class="item__icon fas fa-chart-bar"></i><span
+                          class="item__arrow-name">Ações por Ano</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading13"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse13"
+                        aria-controls="collapse13"><i class="item__icon fas fa-chart-line"></i><span
+                          class="item__arrow-name">Relatórios</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <div class="itemMenu">
+                      <h4 class="itemMenu__title">CONFIGURAÇÕES
+                        <!-- -->
+                      </h4><i class="accordion__icon fas fa-ellipsis-h"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading15"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse15"
+                        aria-controls="collapse15"><i class="item__icon fas fa-cogs"></i><span
+                          class="item__arrow-name">Configuração Gera</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <div class="itemMenu">
+                      <h4 class="itemMenu__title">CERNE
+                        <!-- -->
+                      </h4><i class="accordion__icon fas fa-ellipsis-h"></i>
+                    </div>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading17"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse17"
+                        aria-controls="collapse17"><i class="item__icon fas fa-grip-vertical"></i><span
+                          class="item__arrow-name">Painel de Maturidade</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading18"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse18"
+                        aria-controls="collapse18"><i class="item__icon far fa-calendar-check"></i><span
+                          class="item__arrow-name">Auditoria</span></a></h2>
+                  </div>
+                </li>
+                <li class="accordion">
+                  <div class="accordion__wrapper">
+                    <h2 class="accordion__title mb-0" id="heading19"><a href="" class="collapsed item   " type="button"
+                        data-toggle="collapse" aria-expanded="false" data-target="#collapse19"
+                        aria-controls="collapse19"><i class="item__icon fas fa-book"></i><span
+                          class="item__arrow-name">Documentação</span></a></h2>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+        <section class="section">
+          <div class="section__wrapper section__wrapper--card">
+            <div class="card card--azul">
+              <div class="card__wrapper">
+                <div class="card__icon"><i class="fas fa-medal"> </i></div>
+                <h4 class="card__title">
+                  <!-- -->Certificada CERNE 2
+                  <!-- -->
+                </h4><span class="card__subtitle">
+                  <!-- -->Desde 2019
+                </span>
+              </div>
+            </div>
+            <div class="card card--verde">
+              <div class="card__wrapper">
+                <div class="card__box-image"><img class="card__image" src="foguete-01.png" alt="icone foguete"></div>
+                <span class="card__number">
+                  <!-- -->34
+                </span><span class="card__subtitle">
+                  <!-- -->Empreendimentos Pré-incubados
+                </span>
+              </div>
+            </div>
+            <div class="card card--verde">
+              <div class="card__wrapper">
+                <div class="card__box-image"><img class="card__image" src="foguete-02.png" alt="icone foguete"></div>
+                <span class="card__number">
+                  <!-- -->128
+                </span><span class="card__subtitle">
+                  <!-- -->Empreendimentos Incubados
+                </span>
+              </div>
+            </div>
+            <div class="card card--verde">
+              <div class="card__wrapper">
+                <div class="card__box-image"><img class="card__image" src="foguete-03.png" alt="icone foguete"></div>
+                <span class="card__number">
+                  <!-- -->31
+                </span><span class="card__subtitle">
+                  <!-- -->Empreendimentos Graduados
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="section__wrapper">
+            <div class="authors" id="authors1">
+              <div class="authors__container">
+                <div class="authors__box"><span class="authors__title">Empreendimentos</span><select
+                    class="authors__select">
+                    <option class="authors__option " value="all">filtrar</option>
+                    <option class="authors__option" value="pre">Pré-incubados</option>
+                    <option class="authors__option" value="en">Incubados</option>
+                    <option class="authors__option" value="re">Residente</option>
+                    <option class="authors__option" value="nre">Não Residente</option>
+                  </select></div>
+                <ul class="authors__list">
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="amazon.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="tesla.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Anne Clarc</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="nre"><img class="authors__img" src="sony.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Kristaps Zumman</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="wallmart.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="re"><img class="authors__img" src="peugeot.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Carles Puyol</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="shell.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="re"><img class="authors__img" src="sony.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Anne Clarc</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="en"><img class="authors__img" src="amazon.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Kristaps Zumman</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="en"><img class="authors__img" src="peugeot.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="tesla.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Carles Puyol</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="authors" id="authors2">
+              <div class="authors__container">
+                <div class="authors__box"><span class="authors__title">Empreendedores</span><select
+                    class="authors__select">
+                    <option class="authors__option " value="all">filtrar</option>
+                    <option class="authors__option" value="pre">Pré-incubados</option>
+                    <option class="authors__option" value="en">Incubados</option>
+                    <option class="authors__option" value="re">Residente</option>
+                    <option class="authors__option" value="nre">Não Residente</option>
+                  </select></div>
+                <ul class="authors__list">
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="icone-1.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="icone-2.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Anne Clarc</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="nre"><img class="authors__img" src="icone-3.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Kristaps Zumman</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="icone-4.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="re"><img class="authors__img" src="icone-5.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Carles Puyol</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="icone-1.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="re"><img class="authors__img" src="icone-2.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Anne Clarc</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="en"><img class="authors__img" src="icone-3.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Kristaps Zumman</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="en"><img class="authors__img" src="icone-4.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Ricky Hunt</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                  <li class="authors__item" data-status="pre"><img class="authors__img" src="icone-5.png"
+                      alt="imagem icone">
+                    <div class="authors__box-text"><span class="authors__name">Carles Puyol</span><span
+                        class="authors__info">PHP, SQLite, Artisan CLI</span></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="activity">
+              <div class="activity__container">
+                <div class="activity__box"><span class="activity__title">Atividades Recentes</span></div>
+                <ul class="activity__list">
+                  <li class="activity__item"><span class="activity__data">03/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--danger"></i>
+                    <div class="activity__box-text"><span class="activity__description">Outlines keep you honest. And
+                        keep structure</span><span class="activity__info"></span><a class="activity__link" href=""></a>
+                    </div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">04/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--sucess"></i>
+                    <div class="activity__box-text"><span class="activity__description"></span><span
+                        class="activity__info">AEOL meeting</span><a class="activity__link" href=""></a></div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">05/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--stale"></i>
+                    <div class="activity__box-text"><span class="activity__description"></span><span
+                        class="activity__info">Make deposit</span><a class="activity__link" href="#">USD 700</a></div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">05/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--stale"></i>
+                    <div class="activity__box-text"><span class="activity__description">Indulging in poorly driving and
+                        keep structure keep great</span><span class="activity__info"></span><a class="activity__link"
+                        href="#">#XF-2356</a></div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">03/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--danger"></i>
+                    <div class="activity__box-text"><span class="activity__description">Outlines keep you honest. And
+                        keep structure</span><span class="activity__info"></span><a class="activity__link" href=""></a>
+                    </div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">04/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--sucess"></i>
+                    <div class="activity__box-text"><span class="activity__description"></span><span
+                        class="activity__info">AEOL meeting</span><a class="activity__link" href=""></a></div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">05/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--stale"></i>
+                    <div class="activity__box-text"><span class="activity__description"></span><span
+                        class="activity__info">Make deposit</span><a class="activity__link" href="#">USD 700</a></div>
+                  </li>
+                  <li class="activity__item"><span class="activity__data">05/01/21</span><i
+                      class="activity__icon fa fa-genderless  activity__icon--stale"></i>
+                    <div class="activity__box-text"><span class="activity__description">Indulging in poorly driving and
+                        keep structure keep great</span><span class="activity__info"></span><a class="activity__link"
+                        href="#">#XF-2356</a></div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="section__wrapper section__wrapper--collumn">
+            <div id="chartLine" class="basic">
+              <div class="basic__wrapper">
+                <div class="basic__box">
+                  <div class="basic__box-text">
+                    <h2 class="basic__title">Faturamento dos<br> Empreendimentos</h2>
+                    <select id="charLine-select" class="basic__select">
+                      <option class="basic__option " value="2021">2021</option>
+                      <option class="basic__option " value="2020">2020</option>
+                    </select>
+                  </div>
+                  <div id="chart-line--2021" class="basic__chart"  type="line" width="100%"
+                    height="auto"></div>
+                  <div id="chart-line--2020" class="basic__chart"  type="line" width="100%"
+                    height="auto"></div>
+                </div>
+              </div>
+            </div>
+            <div id="collumnChart" class="basic">
+              <div class="basic__wrapper">
+                <div class="basic__box">
+                  <div class="basic__box-text">
+                    <h2 class="basic__title">Indicadores<br> Consolidados</h2>
+                    <select id="collumnChart-select" class="basic__select">
+                      <option class="basic__option" value="2021">2021</option>
+                      <option class="basic__option" value="2020">2020</option>
+                    </select>
+                  </div>
+                  <div id="collumnChart--2021" class="basic__chart"type="bar" width="100%" height="auto">
+                  </div>
+                  <div id="collumnChart--2020" class="basic__chart"type="bar" width="100%" height="auto">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div id="indChart" class="ind">
+              <div class="ind__wrapper">
+                <div class="ind__box">
+                  <div class="ind__box-text">
+                    <h2 class="ind__title">Indicadores<br> Consolidados</h2>
+                    <select id="indChart-select" class="ind__select">
+                      <option class="ind__option " value="2021">2021</option>
+                      <option class="ind__option " value="2020">2020</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="ind__box-graphic">
+                  <div id="indChart--2021" class="ind__chart" type="donut" width="100%"
+                    height="auto"></div>
+                  <div id="indChart--2020" class="ind__chart" type="donut" width="100%"
+                    height="auto"></div>
+                </div>
+              </div>
+            </div> -->
+           <!-- <div id="graphicChart" class="graphic">
+              <div class="graphic__wrapper">
+                <div class="graphic__box">
+                  <div class="graphic__box-text">
+                    <h2 class="graphic__title">Faturamento dos<br> Empreendimentos</h2>
+                    <select id="graphicChart-select" class="graphic__select">
+                      <option class="graphic__option " value="2021">2021</option>
+                      <option class="graphic__option " value="2020">2020</option>
+                    </select>
+                  </div>
+                  <div id="graphicChart--2021" class="graphic__chart" type="line"
+                    height="125" width="100%"></div>
+                  <div id="graphicChart--2020" class="graphic__chart" type="line"
+                    height="125" width="100%"></div>
+                </div>
+                <div class="graphic__list-cards">
+                  <ul class="graphic__list">
+                    <li class="graphic__card graphic__card--red"><span class="graphic__price">R$ 1231,00 </span><span
+                        class="graphic__description">total de impostos</span></li>
+                    <li class="graphic__card graphic__card--green"><span class="graphic__price">R$ 1231,00 </span><span
+                        class="graphic__description">Invest. externos</span></li>
+                    <li class="graphic__card graphic__card--yellow"><span class="graphic__number">34
+                       
+                      </span><span class="graphic__description">postos de trabalho</span></li>
+                    <li class="graphic__card graphic__card--blue"><span class="graphic__number">34
+                        
+                      </span><span class="graphic__description">marcas e patentes</span></li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <footer class="footer">
+            <div class="footer__wrapper"><span class="footer__text">Copyright © 2021 <img class="footer__icon"
+                  src="bussola-icone.png" alt="logo bussola"> Bússola - Plataforma de Gestão para Ambientes de
+                Inovação</span></div>
+          </footer>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="./static/js/script.js"></script>
+</body>
+
+</html>
