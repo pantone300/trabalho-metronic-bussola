@@ -1,0 +1,129 @@
+.bsl-brand-mobile {
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  margin: 0;
+}
+.bsl-icon-bussola {
+  background: url(../images/icone-bussola.png) no-repeat;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin: 0 5px;
+}
+
+.bsl-tit-color {
+  color: #4c4e6f;
+}
+
+.bsl-thumb-user {
+  border-radius: 100%;
+  height: 50px;
+  width: 50px;
+}
+
+.bsl-thumb-profile-user {
+  border-radius: 100% !important;
+  margin-right: 20px !important;
+  padding-top: 2px !important;
+  object-fit: cover !important;
+}
+
+.bsl-thumb-profile-status {
+  top: -4px !important;
+  right: 16px !important;
+}
+
+.bsl-icon-cog {
+  margin-right: 25px;
+  font-size: 30px;
+  color: #4c4e6f;
+}
+
+.bsl-header-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 27%;
+  max-width: 265px;
+  border-right: 1px solid #ebedf3;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #ffffff;
+}
+
+.bsl-header-img {
+  width: 90%;
+  height: 119px;
+}
+
+.bsl-brand {
+  justify-content: flex-end;
+}
+
+.aside-menu {
+  height: calc(100vh - 210px) !important;
+}
+
+.offcanvas-overlay {
+  z-index: 1001;
+}
+
+@media (min-width: 992px) {
+  .aside-fixed .aside {
+    margin-top: 119px;
+  }
+  .header-fixed.aside-minimize .header,
+  .aside-enabled.subheader-fixed .subheader {
+    left: 265px !important;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .aside-fixed .aside {
+    margin-top: 55px;
+  }
+  .aside-fixed .aside-menu {
+    height: calc(100vh - 79px) !important;
+  }
+  .subheader.subheader-solid {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 109px;
+  }
+  .topbar .bsl-thumb-user {
+    height: 35px !important;
+    width: 35px !important;
+  }
+  .header .header-menu-wrapper {
+    top: 55px !important;
+    left: 0 !important;
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid #ebedf3;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+  .topbar-mobile-on.header-mobile-fixed .topbar {
+    z-index: 1001;
+    box-shadow: none;
+    border-top: none;
+  }
+  .offcanvas.offcanvas-right.offcanvas-on {
+    z-index: 1005;
+  }
+}
+
+@media (max-width: 325px) {
+  .header-menu-wrapper {
+    width: 100% !important;
+  }
+}
