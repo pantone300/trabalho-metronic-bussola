@@ -68,10 +68,6 @@
   height: calc(100vh - 210px) !important;
 }
 
-.offcanvas-overlay {
-  z-index: 1001;
-}
-
 @media (min-width: 992px) {
   .aside-fixed .aside {
     margin-top: 119px;
@@ -119,6 +115,9 @@
   }
   .offcanvas.offcanvas-right.offcanvas-on {
     z-index: 1005;
+  }
+  .offcanvas-overlay {
+    z-index: 1001;
   }
 }
 
