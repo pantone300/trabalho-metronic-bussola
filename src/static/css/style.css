@@ -67,6 +67,10 @@
   justify-content: flex-end;
 }
 
+.bsl-word-break {
+  word-break: break-word;
+}
+
 .aside-menu {
   height: calc(100vh - 210px) !important;
 }
