@@ -7,7 +7,8 @@
   margin: 0;
 }
 .bsl-icon-bussola {
-  background: url(../images/icone-bussola.png) no-repeat;
+  background-image: url(../images/bussola-icone-p.png);
+  background-size: cover;
   display: inline-block;
   width: 16px;
   height: 16px;
