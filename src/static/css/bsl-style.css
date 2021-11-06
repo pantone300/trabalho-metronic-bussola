@@ -48,18 +48,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 27%;
-  max-width: 265px;
+  width: 265px;
+  height: 119px;
   border-right: 1px solid #ebedf3;
   position: fixed;
   left: 0;
   top: 0;
   background: #ffffff;
+  padding: 5px;
+  box-sizing: border-box;
 }
 
 .bsl-header-img {
-  width: 90%;
-  height: 119px;
+  width: 100%;
+  height: 109px;
   object-fit: scale-down;
 }
 
