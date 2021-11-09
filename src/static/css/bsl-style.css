@@ -178,6 +178,9 @@
 }
 
 @media (min-width: 992px) {
+  .header-fixed.subheader-fixed .subheader {
+    z-index: 9;
+  }
   .aside-fixed .aside {
     margin-top: 119px;
   }
@@ -199,6 +202,7 @@
     left: 0;
     right: 0;
     top: 109px;
+    z-index: 9;
   }
   .topbar .bsl-thumb-user {
     height: 35px !important;
