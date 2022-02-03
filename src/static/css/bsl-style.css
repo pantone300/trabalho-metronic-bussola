@@ -177,6 +177,19 @@
   object-fit: cover !important;
 }
 
+.bsl-item .btn:hover {
+  background: transparent !important;
+}
+
+.bsl-item .symbol.symbol-25 .symbol-label,
+.bsl-item .symbol.symbol-35 .symbol-label {
+  width: auto;
+}
+
+.bsl-item .symbol.symbol-light-success .symbol-label {
+  background-color: transparent !important;
+}
+
 .card.card-custom > .card-body.card-item {
   height: 417px;
 }
@@ -201,6 +214,92 @@
   .aside-enabled.subheader-fixed .subheader {
     left: 265px !important;
   }
+}
+
+/* TABLE */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: initial;
+}
+thead th {
+  /* border: 1px solid #ccc; */
+  text-align: center;
+  color: #1344a0;
+}
+thead th.bg {
+  background: #ddd;
+}
+tbody th,
+tbody td {
+  color: blue;
+  text-align: right;
+}
+tbody th.cell {
+  color: #000;
+  border-left: 1px solid #ccc;
+}
+tbody th.bg {
+  background: #cedcec;
+}
+tbody th.dif {
+  border-left: 1px solid #ccc;
+  color: #666;
+  text-align: left;
+}
+/* tr {
+  border-top: 1px solid #ccc;
+} */
+th,
+td {
+  vertical-align: top;
+  border-top: 1px solid #ccc;
+  padding: 5px;
+  width: 100px;
+}
+th {
+  width: 100px;
+}
+.hard_left {
+  position: absolute;
+  left: 0;
+  width: 180px;
+}
+.outer {
+  position: relative;
+}
+.outer .tit {
+  margin: 0 0 15px;
+  font-size: 16px;
+  font-weight: bold;
+}
+.inner {
+  overflow-x: auto;
+  /* overflow-y: visible; */
+  width: auto;
+  margin-left: 180px;
+}
+.receita {
+  background: #87ceff;
+  color: #555555;
+}
+.despesa {
+  background: #ff6347;
+  color: #555555;
+}
+.t-despesa {
+  color: red;
+}
+.bdr {
+  border-right: 1px solid #ccc;
+}
+.bdl {
+  border-left: 1px solid #ccc;
+}
+.bdb {
+  border-bottom: 1px solid #ccc;
 }
 
 @media (max-width: 991.98px) {
