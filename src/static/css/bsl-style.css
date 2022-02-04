@@ -270,10 +270,8 @@ th {
 .outer {
   position: relative;
 }
-.outer .tit {
+.outer .card-toolbar {
   margin: 0 0 15px;
-  font-size: 16px;
-  font-weight: bold;
 }
 .inner {
   overflow-x: auto;
@@ -300,6 +298,12 @@ th {
 }
 .bdb {
   border-bottom: 1px solid #ccc;
+}
+
+#authors1 .btn.btn-light-primary br,
+#authors2 .btn.btn-light-primary br,
+#authors3 .btn.btn-light-primary br {
+  display: none;
 }
 
 @media (max-width: 991.98px) {

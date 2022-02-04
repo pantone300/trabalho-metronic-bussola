@@ -75,13 +75,14 @@ var KTLeaflet = function () {
   KTLeaflet.init();
  });
 
-const filterCards = () => {
-  const selectAuthors1 = document.querySelector('#authors1 .dropdown-menu');
-  const selectAuthors2 = document.querySelector('#authors2 .dropdown-menu');
-  const cards1 = document.querySelectorAll('#authors1 .item');
-  const cards2 = document.querySelectorAll('#authors2 .item');
-  let selected1 = 'all';
-  let selected2 = 'all';
+ const filterCards = (wrapperId, selectedValue) => {
+  const wrapper = document.querySelector(wrapperId);
+  if(wrapper == null || wrapper == 'undefined'){
+    return false;
+  }
+  const select = wrapper.querySelector('.dropdown-menu');
+  const cards = wrapper.querySelectorAll('.item');
+  let selected = selectedValue;
 
   const filter = (select, cards, selected) => {
     select.addEventListener('click', event => {
@@ -94,18 +95,22 @@ const filterCards = () => {
       selected = target.id;
       select.previousElementSibling.innerText = target.innerText;
       cards.forEach(item => {
-        if (selected === item.getAttribute('data-status') || selected === 'all') {
+        item.style.display = 'none';
+        if (selected == item.getAttribute('data-status') || selected == 'all') {
           item.style.display = 'flex';
-        } else {
-          item.style.display = 'none';
         }
       })
     })
   }
-  filter(selectAuthors1, cards1, selected1);
-  filter(selectAuthors2, cards2, selected2);
+  filter(select, cards, selected);
+  const selectedItem = select.querySelector('#' + selected + ' .navi-link');
+  if(selectedItem != null && selectedItem != 'undefined'){
+    selectedItem.click();
+  }
 }
 
 window.onload = function () {
-  filterCards();
+  filterCards('#authors1', 'all');
+  filterCards('#authors2', 'all');
+  filterCards('#authors3', 'y2022');
 }
