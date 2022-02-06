@@ -77,9 +77,7 @@ var KTLeaflet = function () {
 
  const filterCards = (wrapperId, selectedValue) => {
   const wrapper = document.querySelector(wrapperId);
-  if(wrapper == null || wrapper == 'undefined'){
-    return false;
-  }
+  if(wrapper == null || wrapper == 'undefined') return;
   const select = wrapper.querySelector('.dropdown-menu');
   const cards = wrapper.querySelectorAll('.item');
   let selected = selectedValue;
@@ -112,5 +110,5 @@ var KTLeaflet = function () {
 window.onload = function () {
   filterCards('#authors1', 'all');
   filterCards('#authors2', 'all');
-  filterCards('#authors3', 'y2022');
+  filterCards('#yearTable', 'actual');
 }
