@@ -190,6 +190,25 @@
   background-color: transparent !important;
 }
 
+.bsl-actions .btn.btn-sm {
+  width: 47%;
+  font-size: 0.9rem;
+  padding-top: 0.47rem !important;
+  padding-bottom: 0.47rem !important;
+}
+
+.bsl-list-item {
+  min-height: 7.5rem;
+}
+
+.bsl-card-list-1 .bsl-description {
+  min-height: 4.4rem;
+}
+
+.bsl-card-list-2 .bsl-description {
+  min-height: 6.68rem;
+}
+
 .card.card-custom > .card-body.card-item {
   height: 417px;
 }
