@@ -15,6 +15,15 @@
   margin: 0 5px;
 }
 
+.bsl-icon-lattes {
+  background-image: url(../images/ico-lattes.jpg);
+  background-size: cover;
+  display: inline-block;
+  width: 16px;
+  height: 18px;
+  margin: -2px 0 0;
+}
+
 .bsl-tit-color {
   color: #4c4e6f;
 }
