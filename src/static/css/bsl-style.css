@@ -292,51 +292,51 @@
 
 /* TABLE */
 
-table {
+.table-yearly {
   table-layout: fixed;
   width: 100%;
   border-spacing: 0;
   border-collapse: initial;
 }
-thead th {
+.table-yearly thead th {
   /* border: 1px solid #ccc; */
   text-align: center;
   color: #1344a0;
 }
-thead th.bg {
+.table-yearly thead th.bg {
   background: #ddd;
 }
-tbody th,
-tbody td {
+.table-yearly tbody th,
+.table-yearly tbody td {
   color: blue;
   text-align: right;
 }
-tbody th.cell {
+.table-yearly tbody th.cell {
   color: #000;
   border-left: 1px solid #ccc;
 }
-tbody th.bg {
+.table-yearly tbody th.bg {
   background: #cedcec;
 }
-tbody th.dif {
+.table-yearly tbody th.dif {
   border-left: 1px solid #ccc;
   color: #666;
   text-align: left;
 }
-/* tr {
+/* .table-yearly tr {
   border-top: 1px solid #ccc;
 } */
-th,
-td {
+.table-yearly th,
+.table-yearly td {
   vertical-align: top;
   border-top: 1px solid #ccc;
   padding: 5px;
   width: 100px;
 }
-th {
+.table-yearly th {
   width: 100px;
 }
-.hard_left {
+.table-yearly .hard_left {
   position: absolute;
   left: 0;
   width: 180px;
@@ -353,24 +353,24 @@ th {
   width: auto;
   margin-left: 180px;
 }
-.receita {
+.table-yearly .receita {
   background: #87ceff;
   color: #555555;
 }
-.despesa {
+.table-yearly .despesa {
   background: #ff6347;
   color: #555555;
 }
-.t-despesa {
+.table-yearly .t-despesa {
   color: red;
 }
-.bdr {
+.table-yearly .bdr {
   border-right: 1px solid #ccc;
 }
-.bdl {
+.table-yearly .bdl {
   border-left: 1px solid #ccc;
 }
-.bdb {
+.table-yearly .bdb {
   border-bottom: 1px solid #ccc;
 }
 
