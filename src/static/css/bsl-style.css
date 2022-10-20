@@ -142,6 +142,12 @@
   text-align: right;
 }
 
+.bsl-card-title.bsl-card-text {
+  font-size: 1.1rem;
+  text-align: center;
+  line-height: 1.3;
+}
+
 .bsl-card-subtitle {
   font-size: 1rem;
   text-align: right;
@@ -277,6 +283,113 @@
   height: 100% !important;
 }
 
+/* ** BEGIN NEW CSS ** */
+.bsl-bancada .navi .navi-item .navi-link {
+  cursor: pointer;
+}
+
+.bsl-bancada .btn.btn-light-primary br,
+.bsl-bancada .inner {
+  display: none;
+}
+
+.bsl-bancada .inner {
+  margin:  0;
+}
+
+.bsl-bancada .table td {
+  vertical-align: top;
+  padding: 1rem;
+}
+
+.bsl-bancada .company,
+.bsl-bancada .userDescription { width: 25%; }
+.bsl-bancada .nota { width: 10%; text-align: center; }
+.bsl-bancada .nota p { display: inline-block; }
+.bsl-bancada .description { width: 40%; }
+.bsl-bancada .description p { min-width: 300px; }
+.bsl-bancada .description.last p { margin-bottom: 0; }
+
+.bsl-bancada .card-body {
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.bsl-box-primary {
+  background-color: #3699FF;
+  padding: 1rem;
+  color: #fff;
+}
+
+.bsl-box-primary-dark {
+  background-color: #010d19;
+}
+
+.bsl-list-seletivo ul {
+  list-style: none;
+  padding: 0;
+}
+
+.bsl-list-seletivo ul li strong {
+  text-transform: uppercase;
+}
+
+.bsl-tab-cerne .svg-icon-cerne svg {
+  height: 3.5rem !important;
+  width: 3.5rem !important;
+}
+
+.bsl-tab-cerne .img-icon-cerne img {
+  height: 30px !important;
+  width: 30px !important;
+}
+
+.bsl-nav-link .nav-icon .svg-icon .icon-cerne {
+  background-size: cover;
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+}
+
+.bsl-nav-link .nav-icon .svg-icon .icon-cerne1 {
+  background-image: url(../images/ico-cerne1-off.jpg);
+}
+
+.bsl-nav-link .nav-icon .svg-icon .icon-cerne2 {
+  background-image: url(../images/ico-cerne2-off.jpg);
+}
+
+.bsl-nav-link .nav-icon .svg-icon .icon-cerne3 {
+  background-image: url(../images/ico-cerne3-off.jpg);
+}
+
+.bsl-nav-link .nav-icon .svg-icon .icon-cerne4 {
+  background-image: url(../images/ico-cerne4-off.jpg);
+}
+
+.bsl-nav-link:hover .nav-icon .svg-icon .icon-cerne1,
+.bsl-nav-link.active .nav-icon .svg-icon .icon-cerne1 {
+  background-image: url(../images/ico-cerne1-on.jpg);
+}
+
+.bsl-nav-link:hover .nav-icon .svg-icon .icon-cerne2,
+.bsl-nav-link.active .nav-icon .svg-icon .icon-cerne2 {
+  background-image: url(../images/ico-cerne2-on.jpg);
+}
+
+.bsl-nav-link:hover .nav-icon .svg-icon .icon-cerne3,
+.bsl-nav-link.active .nav-icon .svg-icon .icon-cerne3 {
+  background-image: url(../images/ico-cerne3-on.jpg);
+}
+
+.bsl-nav-link:hover .nav-icon .svg-icon .icon-cerne4,
+.bsl-nav-link.active .nav-icon .svg-icon .icon-cerne4 {
+  background-image: url(../images/ico-cerne4-on.jpg);
+}
+
+/* ** END NEW CSS ** */
+
 @media (min-width: 992px) {
   .header-fixed.subheader-fixed .subheader {
     z-index: 9;
@@ -378,6 +491,24 @@
 #authors2 .btn.btn-light-primary br,
 #yearTable .btn.btn-light-primary br {
   display: none;
+}
+
+.bsl-icon-legend {
+  border-radius: 50%;
+  width: 1.1rem !important;
+  height: 1.1rem !important;
+}
+
+.bsl-text-danger {
+  background-color: #F64E60 !important;
+}
+
+.bsl-text-warning {
+  background-color: #FFA800 !important;
+}
+
+.bsl-text-success {
+  background-color: #1BC5BD !important;
 }
 
 @media (max-width: 991.98px) {

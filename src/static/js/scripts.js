@@ -110,5 +110,6 @@ var KTLeaflet = function () {
 window.onload = function () {
   filterCards('#authors1', 'all');
   filterCards('#authors2', 'all');
+  filterCards('#authors3', 'sel');
   filterCards('#yearTable', 'actual');
 }

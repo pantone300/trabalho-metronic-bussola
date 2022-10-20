@@ -3033,12 +3033,174 @@ var KTWidgets = function () {
                         }
                     },
                     track: {
-                        background: KTApp.getSettings()['colors']['theme']['light']['success'],
+                        background: KTApp.getSettings()['colors']['theme']['light']['primary'],
                         strokeWidth: '100%'
                     }
                 }
             },
-            colors: [KTApp.getSettings()['colors']['theme']['base']['success']],
+            colors: [KTApp.getSettings()['colors']['theme']['base']['primary']],
+            stroke: {
+                lineCap: "round",
+            },
+            labels: ["Progress"]
+        };
+
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    }
+
+    var _initMixedWidget14_1 = function () {
+        var element = document.getElementById("kt_mixed_widget_14_1_chart");
+        var height = parseInt(KTUtil.css(element, 'height'));
+
+        if (!element) {
+            return;
+        }
+
+        var options = {
+            series: [80],
+            chart: {
+                height: height,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: "65%"
+                    },
+                    dataLabels: {
+                        showOn: "always",
+                        name: {
+                            show: false,
+                            fontWeight: '700'
+                        },
+                        value: {
+                            color: KTApp.getSettings()['colors']['gray']['gray-700'],
+                            fontSize: "30px",
+                            fontWeight: '700',
+                            offsetY: 12,
+                            show: true,
+                            formatter: function (val) {
+                                return val + '%';
+                            }
+                        }
+                    },
+                    track: {
+                        background: KTApp.getSettings()['colors']['theme']['light']['primary'],
+                        strokeWidth: '100%'
+                    }
+                }
+            },
+            colors: [KTApp.getSettings()['colors']['theme']['base']['primary']],
+            stroke: {
+                lineCap: "round",
+            },
+            labels: ["Progress"]
+        };
+
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    }
+
+    var _initMixedWidget14_2 = function () {
+        var element = document.getElementById("kt_mixed_widget_14_2_chart");
+        var height = parseInt(KTUtil.css(element, 'height'));
+
+        if (!element) {
+            return;
+        }
+
+        var options = {
+            series: [76],
+            chart: {
+                height: height,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: "65%"
+                    },
+                    dataLabels: {
+                        showOn: "always",
+                        name: {
+                            show: false,
+                            fontWeight: '700'
+                        },
+                        value: {
+                            color: KTApp.getSettings()['colors']['gray']['gray-700'],
+                            fontSize: "30px",
+                            fontWeight: '700',
+                            offsetY: 12,
+                            show: true,
+                            formatter: function (val) {
+                                return val + '%';
+                            }
+                        }
+                    },
+                    track: {
+                        background: KTApp.getSettings()['colors']['theme']['light']['primary'],
+                        strokeWidth: '100%'
+                    }
+                }
+            },
+            colors: [KTApp.getSettings()['colors']['theme']['base']['primary']],
+            stroke: {
+                lineCap: "round",
+            },
+            labels: ["Progress"]
+        };
+
+        var chart = new ApexCharts(element, options);
+        chart.render();
+    }
+
+    var _initMixedWidget14_3 = function () {
+        var element = document.getElementById("kt_mixed_widget_14_3_chart");
+        var height = parseInt(KTUtil.css(element, 'height'));
+
+        if (!element) {
+            return;
+        }
+
+        var options = {
+            series: [80],
+            chart: {
+                height: height,
+                type: 'radialBar',
+            },
+            plotOptions: {
+                radialBar: {
+                    hollow: {
+                        margin: 0,
+                        size: "65%"
+                    },
+                    dataLabels: {
+                        showOn: "always",
+                        name: {
+                            show: false,
+                            fontWeight: '700'
+                        },
+                        value: {
+                            color: KTApp.getSettings()['colors']['gray']['gray-700'],
+                            fontSize: "30px",
+                            fontWeight: '700',
+                            offsetY: 12,
+                            show: true,
+                            formatter: function (val) {
+                                return val + '%';
+                            }
+                        }
+                    },
+                    track: {
+                        background: KTApp.getSettings()['colors']['theme']['light']['primary'],
+                        strokeWidth: '100%'
+                    }
+                }
+            },
+            colors: [KTApp.getSettings()['colors']['theme']['base']['primary']],
             stroke: {
                 lineCap: "round",
             },
@@ -4653,6 +4815,9 @@ var KTWidgets = function () {
             _initMixedWidget6();
             _initMixedWidget13();
             _initMixedWidget14();
+            _initMixedWidget14_1();
+            _initMixedWidget14_2();
+            _initMixedWidget14_3();
             _initMixedWidget15();
             _initMixedWidget16();
             _initMixedWidget17();
